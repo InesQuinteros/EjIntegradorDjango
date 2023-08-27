@@ -12,25 +12,34 @@ class Persona:
         self.__edad = edad
         self.__dni = dni
 
-    def set_nombre(self, nombre):
+    @property
+    def nombre(self):
+        return self.__nombre
+
+    @nombre.setter    
+    def nombre(self, nombre):
         if isinstance(nombre, str):
             self.__nombre = nombre
         else:
             print("Error: El nombre debe ser una cadena de caracteres.")
 
-    def get_nombre(self):
-        return self.__nombre
+    @property
+    def edad(self):
+        return self.__edad
 
-    def set_edad(self, edad):
+    @edad.setter
+    def edad(self, edad):
         if isinstance(edad, int) and edad >= 0:
             self.__edad = edad
         else:
             print("Error: La edad debe ser un número entero no negativo.")
 
-    def get_edad(self):
-        return self.__edad
+    @property
+    def dni(self):
+        return self.__dni
 
-    def set_dni(self, dni):
+    @dni.setter
+    def dni(self, dni):
         if isinstance(dni, str) and( len(dni) == 8 or len(dni) == 7):
             if dni.isdigit():
               self.__dni = dni
@@ -39,20 +48,19 @@ class Persona:
         else:
             print("Error: El DNI debe ser una cadena de  7 u 8 caracteres.")
 
-    def get_dni(self):
-        return self.__dni
-
     def mostrar(self):
-        print("Nombre:" + self.__nombre)
-        print("Edad:"+str(self.__edad))
-        print("DNI: "+self.__dni)
+        return f"Nombre: {self.__nombre}, Edad:{str(self.__edad)}, DNI: {self.__dni}"
 
     def es_mayor_de_edad(self):
-        return self.__edad >= 18
+        return self.edad >= 18
 
 persona1 = Persona()
-persona1.set_nombre("Ines")
-persona1.set_edad(20)
-persona1.set_dni("1234567")
-persona1.mostrar()
+print(f"Nombre: {persona1.nombre}")
+print(f"Edad: {persona1.edad}")
+print(f"DNI: {persona1.dni}")
+print (persona1.mostrar())
+persona1.nombre="Ines"
+persona1.edad= 20
+persona1.dni="1234567"
+print (persona1.mostrar())
 print("Es mayor de edad:"+ str(persona1.es_mayor_de_edad()))
