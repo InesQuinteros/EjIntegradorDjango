@@ -11,21 +11,21 @@ no se hará nada.
 
 from persona import Persona
 
-class Cuenta:
-    def __init__(self, titular, cantidad=0.0):
-        self.__titular = titular
+class Cuenta(Persona):
+    def __init__(self, nombre="", edad=0, dni="", cantidad=0.0):
+        super().__init__(nombre, edad, dni)
         self.__cantidad = cantidad
-
+    
     def get_titular(self):
-        return self.__titular
+        return Persona().mostrar()
 
-    def get_cantidad(self):
+    @property
+    def cantidad(self, cantidad):
         return self.__cantidad
 
     def mostrar(self):
-        print(f"Titular: {self.__titular.get_nombre()}")
-        print(f"Cantidad: {self.__cantidad}")
-
+        return f"Titular: {self.nombre} Cantidad: {self.__cantidad}"
+    
     def depositar(self, cantidad):
         if cantidad > 0:
             self.__cantidad += cantidad
@@ -33,13 +33,12 @@ class Cuenta:
     def retirar(self, cantidad):
         self.__cantidad -= cantidad
 
-
-titular = Persona("Ines")
-cuenta = Cuenta(titular, 10000.0)
-cuenta.mostrar()
-
-cuenta.depositar(5000.0)
-cuenta.mostrar()
-
-cuenta.retirar(3000.0)
-cuenta.mostrar()
+print ("-----------------cuenta-----------")
+c1 = Cuenta("NombreCuenta",22,"22222222",45 )
+print (c1.mostrar())
+c1.nombre="Cande"
+c1.depositar(100)
+print (c1.nombre)
+print (c1.mostrar())
+c1.retirar(25)
+print (c1.mostrar())
